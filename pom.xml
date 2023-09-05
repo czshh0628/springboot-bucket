@@ -12,6 +12,7 @@
         <module>springboot-swagger</module>
         <module>springboot-junit</module>
         <module>springboot-mybatisplus</module>
+        <module>springboot-redis</module>
     </modules>
 
     <parent>
