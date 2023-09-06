@@ -1,0 +1,20 @@
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /
+    # 开启发送端确认
+    publisher-confirm-type: correlated
+    # 开启发送端消息抵达队列的确认
+    publisher-returns: true
+    template:
+      # 只要发送端消息抵达队列，以异步方式优先回调这个returnConfirm(绑定publisher-returns一起使用)
+      mandatory: true
+    listener:
+      simple:
+        # 设置客户端手动确认接收到消息
+        acknowledge-mode: manual
+        # 设置阈值 信道上的消息个数
+        prefetch: 250
