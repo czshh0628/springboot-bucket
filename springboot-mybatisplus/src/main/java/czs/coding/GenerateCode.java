@@ -3,7 +3,7 @@ package czs.coding;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
-import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.sql.Types;
 import java.util.Collections;
@@ -15,7 +15,7 @@ import java.util.Collections;
  */
 public class GenerateCode {
     public static void main(String[] args) {
-        FastAutoGenerator.create("jdbc:mysql://bigdata:3306/realtime?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8", "root", "root")
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/realtime?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8", "root", "root")
                 .globalConfig(builder -> {
                     builder.author("czs") // 设置作者
                             .fileOverride() // 覆盖已生成文件
@@ -37,11 +37,11 @@ public class GenerateCode {
                 })
                 .strategyConfig(builder -> {
                     builder
-                            .addInclude("user")
-                            .addInclude("users_cdc") // 设置需要生成的表名
+                            .addInclude("user_cdc")
+                            // .addInclude("users_cdc") // 设置需要生成的表名
                             .addTablePrefix("t_", "c_"); // 设置过滤表前缀
                 })
-                .templateEngine(new VelocityTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+                .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
     }
 }
