@@ -15,6 +15,7 @@
         <module>springboot-redis</module>
         <module>springboot-kafka</module>
         <module>springboot-rabbitmq</module>
+        <module>springboot-elasticsearch</module>
     </modules>
 
     <parent>
