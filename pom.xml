@@ -13,6 +13,7 @@
         <module>springboot-junit</module>
         <module>springboot-mybatisplus</module>
         <module>springboot-redis</module>
+        <module>springboot-kafka</module>
     </modules>
 
     <parent>

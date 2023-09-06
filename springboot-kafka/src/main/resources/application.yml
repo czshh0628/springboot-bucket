@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    # 指定kafka地址
+    bootstrap-servers: bigdata:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      # 指定消费组id
+      group-id: test

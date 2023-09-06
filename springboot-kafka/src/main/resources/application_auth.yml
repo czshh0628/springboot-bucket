@@ -1,0 +1,91 @@
+spring:
+  application:
+    name: kafka_auth
+  kafka_null:
+    # 无认证
+    producer:
+      bootstrap-servers: bigdata:9092
+      batch-size: 2048
+      buffer-memory: 2048
+      # 指定key和value的序列化
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: bigdata:9092
+      enable-auto-commit: true
+      auto-offset-reset: earliest
+      group-id: 0
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topic:
+      log: test
+      group: test
+    properties:
+      security:
+        protocol: PLAINTEXT
+      sasl:
+        mechanism: ""
+        kerberos:
+          service:
+            name: kafka
+        jaas:
+          config: 'com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab="xxx.keytab" principal="xxx";'
+  kafka_kdc:
+    # kdc认证
+    producer:
+      bootstrap-servers: bigdata:6667
+      batch-size: 2048
+      buffer-memory: 2048
+      # 指定key和value的序列化
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: bigdata:6667
+      enable-auto-commit: true
+      auto-offset-reset: earliest
+      group-id: 0
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topic:
+      log: demo
+      group: demo
+    properties:
+      security:
+        protocol: SASL_PLAINTEXT
+      sasl:
+        mechanism: GSSAPI
+        kerberos:
+          service:
+            name: kafka
+        jaas:
+          config: 'com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab="xxx.keytab" principal="xxx@xxx.COM";'
+  kafka_sasl:
+    # sasl用户密码
+    producer:
+      bootstrap-servers: bigdata:9092
+      batch-size: 2048
+      buffer-memory: 2048
+      # 指定key和value的序列化
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: bigdata:9092
+      enable-auto-commit: true
+      auto-offset-reset: earliest
+      group-id: 0
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    topic:
+      log: test
+      group: test
+    properties:
+      security:
+        protocol: SASL_PLAINTEXT
+      sasl:
+        mechanism: PLAIN
+        kerberos:
+          service:
+            name: kafka
+        jaas:
+          config: 'org.apache.kafka.common.security.plain.PlainLoginModule required username="kafka" password="xxx";'
+
