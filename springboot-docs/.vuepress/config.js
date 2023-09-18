@@ -2,7 +2,6 @@ module.exports = {
     "title": "springboot-docs",
     "description": "springboot-docs",
     "dest": "../docs",
-    "base": "springboot-bucket",
     "head": [
         [
             "link",
